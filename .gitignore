@@ -39,7 +39,6 @@ build/
 .project
 .settings/
 .vscode/
-
 # Compiled class files & build directories
 target/
 build/
