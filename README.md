@@ -26,7 +26,7 @@ Build Tool: Maven
 # ⚙️ Getting Started & Setup
 1. Clone the Repository
 Bash
-git clone https://github.com/your-username/ledgerly.git
+git clone https://github.com/nehamangal/ledgerly.git
 cd ledgerly
 2. Configure Properties
 Create or update your src/main/resources/application.properties file with your database and security configurations:
