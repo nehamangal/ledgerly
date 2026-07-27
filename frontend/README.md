@@ -17,3 +17,13 @@ The modern, responsive user interface for **Ledgerly**, built with Next.js and T
 ### 1. Navigate to the Frontend Directory
 ```bash
 cd frontend
+
+### 2. Install Dependencies
+```bash
+npm install
+
+### 3. Configure Environment Variables
+      NEXT_PUBLIC_API_URL=http://localhost:8080
+
+### 4. Run the Development Server
+      npm run dev
