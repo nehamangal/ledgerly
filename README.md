@@ -1,7 +1,7 @@
-Ledgerly — Phase 1 & Phase 2: Spring Boot Backend & Next.js Frontend
+# Ledgerly — Phase 1 & Phase 2: Spring Boot Backend & Next.js Frontend
 A robust financial application consisting of a secure Spring Boot backend and a modern Next.js frontend, featuring JWT authentication, account management, transaction processing, and automated balance tracking.
 
-🚀 Features
+# 🚀 Features
 User Authentication & Authorization: Secure signup and login powered by Spring Security, JSON Web Tokens (JWT), and modern frontend auth flows.
 
 Account Entity & Management: Create and manage bank accounts linked to users, supporting names, balances, and multi-currency structures.
@@ -12,7 +12,7 @@ Idempotency Support: Built-in backend mechanisms to safely handle duplicate tran
 
 Modern UI: Responsive dashboards, transaction forms, and history views built with Next.js and Tailwind CSS.
 
-🛠️ Tech Stack
+# 🛠️ Tech Stack
 Backend
 Language: Java 17+
 
@@ -26,14 +26,14 @@ Database: H2 / MySQL (configured via application properties)
 
 Build Tool: Maven
 
-Frontend
+# Frontend
 Framework: Next.js (React 19)
 
 Styling: Tailwind CSS
 
 Language: TypeScript
 
-⚙️ Getting Started & Setup
+# ⚙️ Getting Started & Setup
 1. Clone the Repository
 Bash
 git clone https://github.com/nehamangal/ledgerly.git
@@ -77,7 +77,7 @@ Bash
 npm run dev
 The application will start running on http://localhost:3000.
 
-🔌 API Endpoints Reference
+# 🔌 API Endpoints Reference
 Authentication
 POST /api/auth/signup — Register a new user account.
 
@@ -91,7 +91,7 @@ GET /api/account/amount — Fetch the current balance of a specific account (?ac
 Transactions
 POST /api/transactions — Execute a financial transaction (includes idempotency key header/body validation).
 
-🧪 Testing via Postman or Frontend UI
+# 🧪 Testing via Postman or Frontend UI
 Frontend UI: Launch the Next.js app (npm run dev) to interact with the dashboards, user authentication flows, and transaction forms directly in your browser.
 
 Postman API Testing:
