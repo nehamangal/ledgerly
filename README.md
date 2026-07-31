@@ -1,45 +1,50 @@
-# Ledgerly — Phase 1 & Phase 2: Spring Boot Backend & Next.js Frontend
-A robust financial application consisting of a secure Spring Boot backend and a modern Next.js frontend, featuring JWT authentication, account management, transaction processing, and automated balance tracking.
+# Ledgerly — Full-Stack Financial Ledger Application
+A production-grade financial ledger application built with a high-performance **Spring Boot** backend, an intelligent **Django** analytics engine, and a sleek **Next.js** frontend. It features secure JWT authentication, multi-currency account management, idempotent transaction processing, recurring subscription detection, and automated trend insights.
 
-# 🚀 Features
-User Authentication & Authorization: Secure signup and login powered by Spring Security, JSON Web Tokens (JWT), and modern frontend auth flows.
+---
 
-Account Entity & Management: Create and manage bank accounts linked to users, supporting names, balances, and multi-currency structures.
+# 🚀 Core Features
+* **Multi-Service Architecture:** 
+  * **Spring Boot Core:** Handles core transactional processing, accounts, idempotency, and security.
+  * **Django Analytics Service:** Powered by AI/heuristic processing to automatically detect recurring subscriptions and financial anomalies.
+* **Secure Authentication:** Robust sign-up and login workflows secured by Spring Security, JSON Web Tokens (JWT), and stateful filters.
+* **Account Entity & Management:** Create, view, and manage bank accounts linked to users with multi-currency tracking (INR, USD, etc.).
+* **Advanced Transaction Engine:** Execute expenses, incomes, and account-to-account transfers with real-time balance propagation.
+* **Idempotency Protection:** Backend support via custom idempotency headers to safely prevent duplicate transaction submissions.
+* **Interactive Dashboard & Charts:** Client-side dynamic breakdowns including **Spending by Category** and **Monthly Trend (In vs Out)** paired with clean Tailwind CSS styling.
 
-Transaction Engine: Process financial transfers and track transaction history with automated balance updates.
-
-Idempotency Support: Built-in backend mechanisms to safely handle duplicate transaction submissions without risking double-charging or corrupting balances.
-
-Modern UI: Responsive dashboards, transaction forms, and history views built with Next.js and Tailwind CSS.
+---
 
 # 🛠️ Tech Stack
-Backend
-Language: Java 17+
 
-Framework: Spring Boot
+### Backend (Core)
+* **Language:** Java 17+
+* **Framework:** Spring Boot
+* **Security:** Spring Security, JWT
+* **Persistence:** Spring Data JPA, Hibernate
+* **Database:** MySQL / H2
+* **Build Tool:** Maven
 
-Security: Spring Security, JWT (JSON Web Tokens)
+### Analytics Engine
+* **Framework:** Django / Django REST Framework
+* **Integration:** REST client fetching transaction summaries for subscription and anomaly profiling.
 
-Persistence: Spring Data JPA, Hibernate
+### Frontend
+* **Framework:** Next.js (App Router, React)
+* **Styling:** Tailwind CSS
+* **Language:** JavaScript / TypeScript
 
-Database: H2 / MySQL (configured via application properties)
-
-Build Tool: Maven
-
-# Frontend
-Framework: Next.js (React 19)
-
-Styling: Tailwind CSS
-
-Language: TypeScript
+---
 
 # ⚙️ Getting Started & Setup
-1. Clone the Repository
-Bash
-git clone https://github.com/nehamangal/ledgerly.git
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/nehamangal/ledgerly.git](https://github.com/nehamangal/ledgerly.git)
 cd ledgerly
-2. Backend Setup
-Configure your src/main/resources/application.properties file with your database and security configurations:
+
+### 2. Spring Boot Backend Setup
+Configure your src/main/resources/application.properties file:
 
 Properties
 spring.datasource.url=jdbc:mysql://localhost:3306/ledgerly
@@ -52,13 +57,29 @@ spring.jpa.show-sql=true
 # JWT Configuration
 jwt.secret=your_jwt_secret_key_here
 jwt.expiration=86400000
+
+# CORS Production / Dev Fallbacks
+FRONTEND_URL=http://localhost:3000
+DJANGO_URL=http://localhost:8000
+
 Build and run the Spring Boot server using Maven:
 
 Bash
 mvn clean spring-boot:run
-The application will start running on http://localhost:8080.
 
-3. Frontend Setup
+The Spring Boot server will run on http://localhost:8080.
+
+3. Django Analytics Engine Setup
+Navigate to your Django analyst directory, install requirements, and run migrations:
+
+Bash
+cd analyst
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver 8000
+The Django analytics server will run on http://localhost:8000.
+
+4. Next.js Frontend Setup
 Navigate to the frontend directory:
 
 Bash
@@ -75,29 +96,32 @@ Run the development server:
 
 Bash
 npm run dev
-The application will start running on http://localhost:3000.
+The Next.js dashboard will run on http://localhost:3000.
 
-# 🔌 API Endpoints Reference
-Authentication
+🔌 API Endpoints Reference
+Spring Boot Endpoints (http://localhost:8080)
 POST /api/auth/signup — Register a new user account.
 
 POST /api/auth/login — Authenticate and receive a JWT token.
 
-Accounts
-POST /api/accounts — Create a new bank account entity.
+GET /api/accounts — Fetch all linked accounts for the authenticated user.
 
-GET /api/account/amount — Fetch the current balance of a specific account (?accountName=name).
+POST /api/account — Create a new bank account entity.
 
-Transactions
-POST /api/transactions — Execute a financial transaction (includes idempotency key header/body validation).
+GET /api/transactions?accountId={id} — Fetch historical transactions for a given account.
 
-# 🧪 Testing via Postman or Frontend UI
-Frontend UI: Launch the Next.js app (npm run dev) to interact with the dashboards, user authentication flows, and transaction forms directly in your browser.
+POST /api/transactions — Execute a financial transaction (supports X-Idempotency-Key header validation).
+
+Django Analytics Endpoints (http://localhost:8000)
+GET /api/insight/?accountId={id} — Fetch AI/heuristic-driven subscription items and spending anomaly alerts.
+
+🧪 Testing via Postman or Frontend UI
+Frontend UI: Launch the Next.js app (npm run dev) to interact with account creation, dynamic category spending charts, live balance metrics, and subscription insights directly in your browser.
 
 Postman API Testing:
 
-Sign up a user using POST /api/auth/signup.
+Authenticate using POST /api/auth/signup or POST /api/auth/login to retrieve your Bearer token.
 
-Log in using POST /api/auth/login to retrieve your Bearer token.
+Pass the token in the request headers (Authorization: Bearer <token>).
 
-Pass the token in the Authorization header (Bearer <token>) to test authenticated account creation, balance lookups, and transaction flows.
+Test transactional integrity, idempotency header behavior, and multi-account balance management.
