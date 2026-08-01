@@ -99,7 +99,7 @@ Bash
 npm run dev
 The Next.js dashboard will run on http://localhost:3000.
 
-🔌 API Endpoints Reference
+### 🔌 API Endpoints Reference
 Spring Boot Endpoints (http://localhost:8080)
 POST /api/auth/signup — Register a new user account.
 
@@ -116,7 +116,7 @@ POST /api/transactions — Execute a financial transaction (supports X-Idempoten
 Django Analytics Endpoints (http://localhost:8000)
 GET /api/insight/?accountId={id} — Fetch AI/heuristic-driven subscription items and spending anomaly alerts.
 
-🧪 Testing via Postman or Frontend UI
+### 🧪 Testing via Postman or Frontend UI
 Frontend UI: Launch the Next.js app (npm run dev) to interact with account creation, dynamic category spending charts, live balance metrics, and subscription insights directly in your browser.
 
 Postman API Testing:
