@@ -40,8 +40,9 @@ A production-grade financial ledger application built with a high-performance **
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/nehamangal/ledgerly.git](https://github.com/nehamangal/ledgerly.git)
+git clone https://github.com/nehamangal/ledgerly.git
 cd ledgerly
+```
 
 ### 2. Spring Boot Backend Setup
 Configure your src/main/resources/application.properties file:
@@ -125,3 +126,12 @@ Authenticate using POST /api/auth/signup or POST /api/auth/login to retrieve you
 Pass the token in the request headers (Authorization: Bearer <token>).
 
 Test transactional integrity, idempotency header behavior, and multi-account balance management.
+
+## Screenshots
+## Login Page : 
+<img width="2940" height="1758" alt="image" src="https://github.com/user-attachments/assets/7b69b3c0-c141-4372-bc4d-4a25624f07bc" />
+
+## Dashboard : 
+<img width="2940" height="1765" alt="image" src="https://github.com/user-attachments/assets/9446236f-fce4-40c0-ac91-1d923604093d" />
+<img width="2940" height="1756" alt="image" src="https://github.com/user-attachments/assets/b408a1c8-e629-40ef-b128-0763990a9303" />
+
