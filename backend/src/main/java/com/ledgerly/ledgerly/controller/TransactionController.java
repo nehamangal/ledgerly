@@ -39,7 +39,7 @@ public class TransactionController {
     }
 
 
-    @GetMapping("/fetchTransaction")
+    @GetMapping("/transactions")
     public ResponseEntity<?> fetchTransaction(Principal principle, @RequestParam Integer accountId) {
         try {
             String email = principle.getName();
