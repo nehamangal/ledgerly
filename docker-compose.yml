@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # Message Broker
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672" # RabbitMQ Management UI (http://localhost:15672)
+    networks:
+      - ledger-net
+
+  # Spring Boot API
+  spring-app:
+    build: ./spring-boot-app
+    container_name: spring-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - rabbitmq
+    networks:
+      - ledger-net
+
+  # Django Prediction Service & Consumer Worker
+  django-app:
+    build: ./django-app
+    container_name: django-app
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - rabbitmq
+    networks:
+      - ledger-net
+
+  django-worker:
+    build: ./django-app
+    container_name: django-worker
+    command: python manage.py consume_transactions
+    depends_on:
+      - rabbitmq
+    networks:
+      - ledger-net
+
+  # Next.js Frontend
+  next-app:
+    build: ./nextjs-app
+    container_name: next-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+    depends_on:
+      - spring-app
+    networks:
+      - ledger-net
+
+networks:
+  ledger-net:
+    driver: bridge

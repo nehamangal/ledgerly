@@ -1,0 +1,45 @@
+# --- Frontend (Next.js) ---
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/dist/
+frontend/build/
+frontend/next-env.d.ts
+
+# --- Backend (Spring Boot) ---
+backend/target/
+backend/.gradle/
+backend/build/
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# --- Analyst (Django) ---
+analyst/venv/
+analyst/.venv/
+analyst/__pycache__/
+analyst/*.pyc
+analyst/*.sqlite3
+analyst/media/
+analyst/staticfiles/
+
+# --- General OS & IDE ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Environment & Secret Files ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- Package Managers & Logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+.pnp
+.pnp.*
